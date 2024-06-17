@@ -10,7 +10,7 @@ namespace MiniIap\Products;
 use MiniIap\Drivers\Apple\Exceptions\InvalidReceiptException;
 use MiniIap\Drivers\Apple\Receipts\ReceiptResponse;
 use MiniIap\Drivers\Apple\Receipts\Verifier;
-use MiniIap\Drivers\Google\ClientFactory;
+use MiniIap\Drivers\Apple\ClientFactory;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -30,7 +30,7 @@ class Apple
 
     public function __construct(?ClientInterface $client = null)
     {
-        $this->client = $client ?? ClientFactory::create([ClientFactory::SCOPE_ANDROID_PUBLISHER]);
+        $this->client = $client ?? ClientFactory::create(config('iap.app-store.sandbox'));
         $this->packageName = config('iap.google-play.package_name');
     }
 

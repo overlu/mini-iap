@@ -31,7 +31,7 @@ class Apple
     public function __construct(?ClientInterface $client = null)
     {
         $this->client = $client ?? ClientFactory::create(config('iap.app-store.sandbox'));
-        $this->packageName = config('iap.google-play.package_name');
+        $this->password = config('iap.app-store.password');
     }
 
     /**

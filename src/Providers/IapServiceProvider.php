@@ -55,7 +55,8 @@ class IapServiceProvider extends AbstractServiceProvider
         $googleApplicationCredentials = (string)config('iap.google-play.application_credentials');
 
         if (!empty($googleApplicationCredentials) && file_exists($googleApplicationCredentials)) {
-            env(['GOOGLE_APPLICATION_CREDENTIALS' => $googleApplicationCredentials]);
+//            env(['GOOGLE_APPLICATION_CREDENTIALS' => $googleApplicationCredentials]);
+            putenv('GOOGLE_APPLICATION_CREDENTIALS='.$googleApplicationCredentials);
         }
     }
 

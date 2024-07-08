@@ -106,6 +106,8 @@ class ProductPurchase implements JsonSerializable
      */
     protected array $plainResponse = [];
 
+    public static array $theAttributesNeedTransformToInt = ['purchaseTimeMillis', 'purchaseState', 'consumptionState', 'purchaseType', 'acknowledgementState', 'quantity'];
+
     /**
      * Product Purchase constructor
      * @param array $payload
@@ -115,7 +117,7 @@ class ProductPurchase implements JsonSerializable
         $attributes = array_keys(get_class_vars(self::class));
         foreach ($attributes as $attribute) {
             if (isset($payload[$attribute])) {
-                $this->$attribute = $payload[$attribute];
+                $this->$attribute = in_array($attribute, self::$theAttributesNeedTransformToInt, true) ? (int)$payload[$attribute] : $payload[$attribute];
             }
         }
 
